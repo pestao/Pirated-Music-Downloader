@@ -14,6 +14,16 @@ $(function(){
                         'top' : '20px',
                         'right' : '10px'
                     });
+    var searchURL2 = 'http://nodata.tv/?s=' + encodeURIComponent(artist + ' ' + title);
+    var searchElem2 = $('<a href="' + searchURL2 + '">')
+                    .text('Download')
+                    .addClass('mini-summary')
+                    .attr('target', '_blank')
+                    .css({
+                        'position' : 'absolute',
+                        'top' : '20px',
+                        'right' : '10px'
+                    });
     var searchErrorElem = $('<div>Download unavailable</div>')
                     .attr({'id' : 'product-header-catalog-number'})
                     .css({
@@ -24,7 +34,13 @@ $(function(){
                     });
     $.get(searchURL, function(data){
         if (data.indexOf('No matches') != -1) {
-            productHeader.find('#product-header-body').append(searchErrorElem);
+            $.get(searchURL, function(data){
+            if (data.indexOf('Our Apologies') != -1) {
+                productHeader.find('#product-header-body').append(searchElem2);
+            } else {
+                productHeader.find('#product-header-body').append(searchErrorElem);
+            };
+        });
         } else {
             productHeader.find('#product-header-body').append(searchElem);
         }
