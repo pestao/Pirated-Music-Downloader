@@ -36,13 +36,13 @@ $(function(){
         if (data.indexOf('No matches') != -1) {
             $.get(nodata, function(data){
             if (data.indexOf('Our Apologies') != -1) {
-                productHeader.find('#product-header-body').append(searchND.addElem);
+                productHeader.find('#product-header-body').append(searchND.addElem());
             } else {
                 productHeader.find('#product-header-body').append(searchErrorElem);
             };
         });
         } else {
-            productHeader.find('#product-header-body').append(searchGB.addElem);
+            productHeader.find('#product-header-body').append(searchGB.addElem());
         }
     });
 });
