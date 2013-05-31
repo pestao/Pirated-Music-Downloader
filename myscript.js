@@ -12,7 +12,7 @@ $(function(){
         this.elem = $('<a href="' + URL + '">');
     };
     SearchElem.prototype.addElem = function() {
-        this.elem.text('Download')
+        return this.elem.text('Download')
         .addClass('mini-summary')
         .attr('target', '_blank')
         .css({
